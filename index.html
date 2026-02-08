@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Restaurant Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1 id="restaurantName">Bakso Berkah</h1>
+    <p id="tableCode"></p>
+  </header>
+
+  <main>
+    <section id="menu"></section>
+  </main>
+
+  <!-- Cart button (ONLY ONE) -->
+  <div id="cartButton" onclick="toggleCart()">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" class="hidden" onclick="closeCart()"></div>
+
+  <!-- Cart modal -->
+  <div id="cartModal" class="hidden">
+    <h2>Your Order</h2>
+    <ul id="cartItems"></ul>
+    <p>Total: Rp. <span id="cartTotal">0</span></p>
+
+    <button onclick="submitOrder()">Place Order</button>
+    <button onclick="closeCart()">Close</button>
+  </div>
+
+  <script src="menu.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
