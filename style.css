@@ -168,13 +168,12 @@ button:hover { opacity: .92; }
   margin-top: 6px;
 }
 
-.cart-item{
-  padding-right: 18px;   /* pulls the right controls inward */
+.cart-item {
+  padding: 16px 0;
 }
 
-.cart-qty{
-  justify-self: end;
-  margin-right: 12px;    /* extra inward shift */
+.cart-qty {
+  align-items: center;      /* instead of flex-end */
 }
 
 .qty-row{ display:flex; align-items:center; gap:10px; }
@@ -192,12 +191,12 @@ button:hover { opacity: .92; }
   min-width: 20px;
 }
 
-.remove-all{
-  border: 0;
-  background: transparent;
-  color: #888;
-  font-size: 13px;
-  padding: 4px 6px;
+.remove-all {
+  opacity: .6;
+}
+.remove-all:hover {
+  opacity: 1;
+  color: #c0392b;
 }
 
 .notes-wrap{ margin-top: 12px; display:flex; flex-direction:column; gap:10px; }
@@ -347,6 +346,7 @@ button:hover { opacity: .92; }
   .qty-btn{ width: 40px; height: 40px; }
   .remove-all{ padding: 8px 10px; }
 }
+
 
 
 
