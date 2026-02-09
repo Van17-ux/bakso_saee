@@ -27,7 +27,6 @@ function renderMenu() {
   const menuEl = document.getElementById("menu");
   menuEl.innerHTML = "";
 
-  // group by category
   const categories = [...new Set(menuData.map(i => i.category))];
 
   categories.forEach(cat => {
@@ -38,23 +37,24 @@ function renderMenu() {
     menuData.filter(i => i.category === cat).forEach(item => {
       const card = document.createElement("div");
       card.className = "menu-item";
+
       card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;">
-        <div style="display:flex;gap:12px;align-items:center;">
-          <img
-            src="${item.image || "assets/placeholder.jpg"}"
-            alt="${item.name}"
-            style="width:70px;height:70px;border-radius:12px;object-fit:cover;background:#eee;"
+        <div class="menu-left">
+          <img class="menu-img"
+               src="${item.image || "assets/placeholder.jpg"}"
+               alt="${item.name}"
+               onclick="openProduct(${item.id})"
           />
           <div>
-            <h3 style="margin:0 0 6px;">${item.name}</h3>
-            <p style="margin:0;opacity:.8;">Rp. ${item.price}</p>
+            <h3 class="menu-title">${item.name}</h3>
+            <p class="menu-desc">${item.desc || ""}</p>
+            <p class="menu-price">RM ${item.price}</p>
           </div>
         </div>
 
         <button onclick="addToCart(${item.id})">Add</button>
-        </div>
-        `;
+      `;
+
       menuEl.appendChild(card);
     });
   });
@@ -73,10 +73,63 @@ function addToCart(id) {
   updateCart();
 }
 
+function allowNote(category){
+  const c = (category || "").toLowerCase();
+  return c.includes("combo") || c.includes("minuman");
+}
+
 function getNotePlaceholder(category) {
-  const cat = (category || "").toLowerCase();
-  if (cat.includes("drink")) return "Comment e.g. less ice, no sugar";
-  return "Comment e.g. no tomato, extra lettuce";
+  const c = (category || "").toLowerCase();
+  if (c.includes("minuman")) return "Comment e.g. less ice, no sugar";
+  if (c.includes("combo")) return "Comment e.g. spicy level, no sambal";
+  return ""; // not used
+}
+
+function openProduct(id){
+  const item = menuData.find(x => x.id === id);
+  if (!item) return;
+
+  const modal = document.getElementById("productModal");
+  const content = document.getElementById("productModalContent");
+  const overlay = document.getElementById("overlay");
+
+  content.innerHTML = `
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;">
+      <div>
+        <div style="font-size:22px;font-weight:900;">${item.name}</div>
+        <div style="opacity:.75;margin-top:6px;font-size:14px;">${item.desc || ""}</div>
+        <div style="margin-top:10px;font-weight:800;">RM ${item.price}</div>
+        <div style="margin-top:6px;opacity:.7;font-size:13px;">Category: ${item.category}</div>
+      </div>
+      <button onclick="closeProduct()" style="border-radius:12px;padding:8px 12px;">✖</button>
+    </div>
+
+    <img src="${item.image || "assets/placeholder.jpg"}"
+         alt="${item.name}"
+         style="width:100%;border-radius:14px;margin-top:12px;object-fit:cover;"
+    />
+
+    <div style="margin-top:14px;display:flex;gap:10px;">
+      <button onclick="addToCart(${item.id}); closeProduct();" style="flex:1;">Add to Cart</button>
+      <button onclick="closeProduct()" style="flex:1;">Close</button>
+    </div>
+  `;
+
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+}
+
+function closeProduct(){
+  document.getElementById("productModal")?.classList.add("hidden");
+  // overlay might still be needed if cart is open, so check:
+  const cartOpen = !document.getElementById("cartModal")?.classList.contains("hidden");
+  if (!cartOpen) document.getElementById("overlay")?.classList.add("hidden");
+}
+
+function closeAllModals(){
+  document.getElementById("cartModal")?.classList.add("hidden");
+  document.getElementById("productModal")?.classList.add("hidden");
+  document.getElementById("overlay")?.classList.add("hidden");
 }
 
 function updateCart() {
@@ -129,23 +182,25 @@ function updateCart() {
         </div>
       </div>
 
-      <!-- individual lines for notes -->
-      <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
-        ${lines.map((line, idx) => `
-          <div style="display:flex;align-items:center;gap:10px;">
-          <div style="min-width:62px;font-weight:800;opacity:.8;">${idx + 1}:</div>
+      ${allowNote(item.category) ? `
+  <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px;">
+    ${lines.map((line, idx) => `
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="noteRowLabel">${idx + 1}:</div>
         <input
-        type="text"
-        placeholder="${getNotePlaceholder(item.category)}"
-        value="${line.note || ""}"
-        oninput="updateNote('${line.lineId}', this.value)"
-        style="flex:1;padding:14px;border:1px solid #ddd;border-radius:14px;font-size:16px;"
+          type="text"
+          placeholder="${getNotePlaceholder(item.category)}"
+          value="${line.note || ""}"
+          oninput="updateNote('${line.lineId}', this.value)"
+          style="flex:1;padding:12px;border:1px solid #ddd;border-radius:14px;font-size:15px;"
         />
-        <button onclick="removeLine('${line.lineId}')" style="border-radius:14px;padding:10px 12px;font-size:16px;">
-        ✖
-    </button>
+        <button onclick="removeLine('${line.lineId}')" style="border-radius:14px;padding:10px 12px;">
+          ✖
+        </button>
+      </div>
+    `).join("")}
   </div>
-`).join("")}
+` : ``}
 
     `;
 
@@ -228,11 +283,17 @@ function submitOrder() {
 
 function toggleCart() {
   const modal = document.getElementById("cartModal");
-  if (!modal) return;
+  const overlay = document.getElementById("overlay");
+  const productModal = document.getElementById("productModal");
 
-  const isHidden = modal.classList.contains("hidden");
-  if (isHidden) openCart();
-  else closeCart();
+  // if product modal open, close it first
+  if (productModal && !productModal.classList.contains("hidden")) {
+    closeProduct();
+    return;
+  }
+
+  modal.classList.toggle("hidden");
+  overlay.classList.toggle("hidden");
 }
 
 function openCart() {
@@ -252,3 +313,4 @@ closeCart();
 getTableCode();
 renderMenu();
 updateCart();
+
