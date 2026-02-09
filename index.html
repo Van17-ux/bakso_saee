@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
   <header>
     <h1 id="restaurantName">Bakso Berkah</h1>
     <p id="tableCode"></p>
@@ -18,29 +19,36 @@
   </main>
 
   <!-- Cart button (ONLY ONE) -->
-<div id="cartButton" onclick="toggleCart()">
-  🛒 Cart (<span id="cartCount">0</span>)
-</div>
+  <div id="cartButton" onclick="toggleCart()">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </div>
 
-<!-- Overlay -->
-<div id="overlay" class="hidden" onclick="closeAllModals()"></div>
+  <!-- Overlay (shared) -->
+  <div id="overlay" class="hidden"></div>
 
-<!-- Cart modal -->
-<div id="cartModal" class="hidden">
-  <h2>Your Order</h2>
-  <ul id="cartItems"></ul>
-  <p>Total: RM <span id="cartTotal">0</span></p>
-  <button onclick="submitOrder()">Place Order</button>
-  <button onclick="toggleCart()">Close</button>
-</div>
+  <!-- Cart modal -->
+  <div id="cartModal" class="hidden" role="dialog" aria-modal="true">
+    <h2>Your Order</h2>
+    <ul id="cartItems"></ul>
+    <p class="cart-total">Total: <strong>Rp <span id="cartTotal">0</span></strong></p>
 
-<!-- Product popup modal -->
-<div id="productModal" class="hidden">
-  <div id="productModalContent"></div>
-</div>
-  
+    <div class="cart-actions">
+      <button onclick="submitOrder()">Place Order</button>
+      <button onclick="toggleCart()">Close</button>
+    </div>
+  </div>
+
+  <!-- Product modal -->
+  <div id="productOverlay" class="hidden"></div>
+
+  <div id="productModal" class="hidden" role="dialog" aria-modal="true">
+    <button id="productCloseBtn" aria-label="Close">✕</button>
+    <div id="productModalContent"></div>
+  </div>
+
+  <!-- Load menu FIRST, then script -->
   <script src="menu.js"></script>
   <script src="script.js"></script>
+
 </body>
 </html>
-
