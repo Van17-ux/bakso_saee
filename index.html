@@ -18,24 +18,29 @@
   </main>
 
   <!-- Cart button (ONLY ONE) -->
-  <div id="cartButton" onclick="toggleCart()">
-    🛒 Cart (<span id="cartCount">0</span>)
-  </div>
+<div id="cartButton" onclick="toggleCart()">
+  🛒 Cart (<span id="cartCount">0</span>)
+</div>
 
-  <!-- Overlay -->
-  <div id="overlay" class="hidden" onclick="closeCart()"></div>
+<!-- Overlay -->
+<div id="overlay" class="hidden" onclick="closeAllModals()"></div>
 
-  <!-- Cart modal -->
-  <div id="cartModal" class="hidden">
-    <h2>Your Order</h2>
-    <ul id="cartItems"></ul>
-    <p>Total: Rp. <span id="cartTotal">0</span></p>
+<!-- Cart modal -->
+<div id="cartModal" class="hidden">
+  <h2>Your Order</h2>
+  <ul id="cartItems"></ul>
+  <p>Total: RM <span id="cartTotal">0</span></p>
+  <button onclick="submitOrder()">Place Order</button>
+  <button onclick="toggleCart()">Close</button>
+</div>
 
-    <button onclick="submitOrder()">Place Order</button>
-    <button onclick="closeCart()">Close</button>
-  </div>
-
+<!-- Product popup modal -->
+<div id="productModal" class="hidden">
+  <div id="productModalContent"></div>
+</div>
+  
   <script src="menu.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
+
