@@ -40,21 +40,8 @@ button:hover { opacity: 0.9; }
   z-index: 10000;
 }
 
-.hidden { display: none; }
-
-#cartModal{
-  position: fixed;
-  left: 0; right: 0; bottom: 0;
-  max-height: 75vh;
-  overflow: auto;
-  background: #fff;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.25);
-  z-index: 9999;
-}
-
+/* overlay */
+#overlay.hidden { display:none; }
 #overlay{
   position: fixed;
   inset: 0;
@@ -62,7 +49,87 @@ button:hover { opacity: 0.9; }
   z-index: 9998;
 }
 
+/* cart modal = bottom sheet */
+#cartModal{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  width: min(900px, calc(100% - 32px));
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  z-index: 9999;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* product modal */
+#productModal{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 10vh;
+  width: min(520px, calc(100% - 32px));
+  background: #fff;
+  border-radius: 18px;
+  padding: 16px;
+  z-index: 10001;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* better menu layout */
+.menu-item{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap:12px;
+}
+.menu-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.menu-img{
+  width:70px;
+  height:70px;
+  border-radius:12px;
+  object-fit:cover;
+  background:#eee;
+  cursor:pointer;
+}
+.menu-title{ font-size:22px; font-weight:800; margin:0 0 4px; }
+.menu-desc{ font-size:14px; opacity:.75; margin:0 0 6px; }
+.menu-price{ margin:0; opacity:.8; }
+
+/* cart typography classes */
+.cart-title{ font-size:26px; font-weight:900; margin:0; }
+.cart-sub{ font-size:16px; opacity:.85; margin-top:6px; }
+.qtyBtn{ width:52px; height:52px; border-radius:14px; font-size:20px; }
+.qtyNum{ font-size:24px; font-weight:900; min-width:24px; text-align:center; }
+.noteRowLabel{ min-width:34px; font-weight:800; opacity:.8; }
+
+/* MOBILE: reduce everything */
+@media (max-width: 480px){
+  #cartModal{
+    bottom: 0;
+    width: 100%;
+    border-radius: 18px 18px 0 0;
+    max-height: 78vh;
+    padding: 14px;
+  }
+  .menu-img{ width:58px; height:58px; }
+  .menu-title{ font-size:18px; }
+  .menu-desc{ font-size:12px; }
+  .cart-title{ font-size:20px; }
+  .cart-sub{ font-size:14px; }
+  .qtyBtn{ width:44px; height:44px; font-size:18px; }
+  .qtyNum{ font-size:20px; }
+}
+
 
 
 #cartItems { padding-left: 18px; }
 #cartItems li { list-style: none; }
+
