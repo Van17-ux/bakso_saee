@@ -283,10 +283,10 @@ button:hover { opacity: .92; }
 }
 
 /* Mobile tuning */
-@media (max-width: 520px) {
-  .cat-title { font-size: 24px; }
-  .menu-name { font-size: 18px; }
-  .menu-img { width: 64px; height: 64px; }
+@media (max-width: 480px){
+  #cartModal { padding: 14px; }
+  #cartItems li { padding: 12px 0 !important; }
+}
 
   #cartModal{
     left: 0;
@@ -302,4 +302,5 @@ button:hover { opacity: .92; }
   .qty-btn{ width: 40px; height: 40px; }
   .remove-all{ padding: 8px 10px; }
 }
+
 
