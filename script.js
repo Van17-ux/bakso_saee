@@ -130,6 +130,28 @@ function closeAllModals(){
   document.getElementById("cartModal")?.classList.add("hidden");
   document.getElementById("productModal")?.classList.add("hidden");
   document.getElementById("overlay")?.classList.add("hidden");
+  <!-- Cart button (ONLY ONE) -->
+<div id="cartButton" onclick="toggleCart()">
+  🛒 Cart (<span id="cartCount">0</span>)
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="hidden" onclick="closeAllModals()"></div>
+
+<!-- Cart modal -->
+<div id="cartModal" class="hidden">
+  <h2>Your Order</h2>
+  <ul id="cartItems"></ul>
+  <p>Total: RM <span id="cartTotal">0</span></p>
+  <button onclick="submitOrder()">Place Order</button>
+  <button onclick="toggleCart()">Close</button>
+</div>
+
+<!-- Product popup modal -->
+<div id="productModal" class="hidden">
+  <div id="productModalContent"></div>
+</div>
+
 }
 
 function updateCart() {
@@ -313,4 +335,5 @@ closeCart();
 getTableCode();
 renderMenu();
 updateCart();
+
 
