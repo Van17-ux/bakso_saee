@@ -197,9 +197,43 @@ function updateNote(lineId, value) {
 function submitOrder() {
   if (cart.length === 0) return alert("Cart is empty.");
 
-  let total = cart.reduce((s, l) => s + Number(l.price || 0), 0);
-  alert(`✅ Order placed!\nTable: ${tableCode}\nTotal: Rp. ${safeMoney(total)}`);
+  // group by product id
+  const grouped = {};
+  cart.forEach(line => {
+    grouped[line.id] ??= { name: line.name, price: line.price, category: line.category, lines: [] };
+    grouped[line.id].lines.push(line);
+  });
 
+  let total = 0;
+
+  const summary = Object.values(grouped).map(g => {
+    const qty = g.lines.length;
+    const sub = g.lines.reduce((s, l) => s + Number(l.price || 0), 0);
+    total += sub;
+
+    // notes section (only if notes are enabled for that category)
+    let notesBlock = "";
+    if (typeof shouldShowNotes === "function" && shouldShowNotes(g.category)) {
+      const notes = g.lines.map((l, idx) => {
+        const noteText = (l.note || "").trim() ? (l.note || "").trim() : "(no note)";
+        return `   ${idx + 1}: ${noteText}`;
+      }).join("\n");
+
+      notesBlock = `\n${notes}`;
+    }
+
+    return `- ${g.name} x${qty}${notesBlock}`;
+  }).join("\n\n");
+
+  // show alert
+  alert(
+    `✅ Order placed!\n` +
+    `Table: ${tableCode}\n\n` +
+    `${summary}\n\n` +
+    `Total: Rp. ${typeof safeMoney === "function" ? safeMoney(total) : total.toFixed(0)}`
+  );
+
+  // reset
   cart.length = 0;
   updateCart();
   toggleCart();
@@ -261,3 +295,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modal && !modal.classList.contains("hidden")) toggleCart();
   });
 });
+
