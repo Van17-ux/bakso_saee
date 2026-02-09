@@ -283,25 +283,51 @@ button:hover { opacity: .92; }
 }
 
 /* Mobile tuning */
+/* Mobile tuning */
 @media (max-width: 480px){
+
+  #cartModal{
+    left: 0;
+    bottom: 0;
+    transform: none;
+    width: 100vw;
+    max-height: 82vh;
+    border-radius: 22px 22px 0 0;
+    padding-bottom: 90px; /* space for floating cart button */
+  }
+
+  .cart-title{ font-size: 18px; }
+  .cart-meta{ font-size: 13px; }
+
+  /* ✅ RIGHT SIDE FIX (make it centered + not too far right) */
   .cart-top{
-    gap:10px;                    /* reduce spacing */
+    gap: 10px;
   }
 
   .cart-qty{
-    min-width:96px;              /* more center + less right overflow */
+    min-width: 82px;        /* smaller than 96px */
+    align-items: center;    /* center the right column instead of pushing right */
+  }
+
+  .qty-row{
+    gap: 6px;
   }
 
   .qty-btn{
-    width:34px;                  /* smaller on phone */
-    height:34px;
-    font-size:16px;
-    border-radius:10px;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .qty-num{
+    font-size: 16px;
+    min-width: 16px;
   }
 
   .remove-all{
-    padding:6px 8px;
-    font-size:12px;
+    font-size: 11px;
+    padding: 4px 6px;
   }
 }
 
@@ -319,6 +345,7 @@ button:hover { opacity: .92; }
   .qty-btn{ width: 40px; height: 40px; }
   .remove-all{ padding: 8px 10px; }
 }
+
 
 
 
