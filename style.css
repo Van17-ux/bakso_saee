@@ -284,8 +284,25 @@ button:hover { opacity: .92; }
 
 /* Mobile tuning */
 @media (max-width: 480px){
-  #cartModal { padding: 14px; }
-  #cartItems li { padding: 12px 0 !important; }
+  .cart-top{
+    gap:10px;                    /* reduce spacing */
+  }
+
+  .cart-qty{
+    min-width:96px;              /* more center + less right overflow */
+  }
+
+  .qty-btn{
+    width:34px;                  /* smaller on phone */
+    height:34px;
+    font-size:16px;
+    border-radius:10px;
+  }
+
+  .remove-all{
+    padding:6px 8px;
+    font-size:12px;
+  }
 }
 
   #cartModal{
@@ -302,5 +319,6 @@ button:hover { opacity: .92; }
   .qty-btn{ width: 40px; height: 40px; }
   .remove-all{ padding: 8px 10px; }
 }
+
 
 
