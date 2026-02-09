@@ -143,7 +143,11 @@ button:hover { opacity: .92; }
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: 8px; /* reduce gap */
+}
+
+.cart-main{
+  padding-right: 6px;
 }
 
 .cart-title{
@@ -168,30 +172,31 @@ button:hover { opacity: .92; }
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 10px;
+  gap: 6px;
+  min-width: 96px; /* LIMIT WIDTH */
 }
 
 .qty-row{ display:flex; align-items:center; gap:10px; }
 .qty-btn{
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
   border: 0;
   background: #efefef;
-  font-size: 20px;
+  font-size: 18px;
 }
 .qty-num{
-  font-size: 18px;
-  font-weight: 900;
-  min-width: 24px;
-  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  min-width: 20px;
 }
 
 .remove-all{
   border: 0;
-  background: #efefef;
-  border-radius: 14px;
-  padding: 10px 12px;
+  background: transparent;
+  color: #888;
+  font-size: 13px;
+  padding: 4px 6px;
 }
 
 .notes-wrap{ margin-top: 12px; display:flex; flex-direction:column; gap:10px; }
@@ -290,10 +295,11 @@ button:hover { opacity: .92; }
     width: 100vw;
     max-height: 82vh;
     border-radius: 22px 22px 0 0;
-    padding: 14px;
+    padding-bottom: 90px; /* space for floating cart button */
   }
 
   .cart-title{ font-size: 18px; }
   .qty-btn{ width: 40px; height: 40px; }
   .remove-all{ padding: 8px 10px; }
 }
+
