@@ -140,10 +140,10 @@ button:hover { opacity: .92; }
 .cart-item { list-style: none; padding: 14px 0; border-bottom: 1px solid #eee; }
 
 .cart-top{
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px; /* reduce gap */
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  column-gap: 14px;
 }
 
 .cart-main{
@@ -168,12 +168,13 @@ button:hover { opacity: .92; }
   margin-top: 6px;
 }
 
+.cart-item{
+  padding-right: 18px;   /* pulls the right controls inward */
+}
+
 .cart-qty{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
-  min-width: 96px; /* LIMIT WIDTH */
+  justify-self: end;
+  margin-right: 12px;    /* extra inward shift */
 }
 
 .qty-row{ display:flex; align-items:center; gap:10px; }
@@ -283,7 +284,6 @@ button:hover { opacity: .92; }
 }
 
 /* Mobile tuning */
-/* Mobile tuning */
 @media (max-width: 480px){
 
   #cartModal{
@@ -304,9 +304,13 @@ button:hover { opacity: .92; }
     gap: 10px;
   }
 
+  .cart-item{
+    padding-right: 10px;
+  }
+  
   .cart-qty{
-    min-width: 82px;        /* smaller than 96px */
-    align-items: center;    /* center the right column instead of pushing right */
+    margin-right: 6px;
+    min-width: 96px;
   }
 
   .qty-row{
@@ -314,10 +318,8 @@ button:hover { opacity: .92; }
   }
 
   .qty-btn{
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
-    border-radius: 10px;
+    width: 34px;
+    height: 34px;
   }
 
   .qty-num{
@@ -345,6 +347,7 @@ button:hover { opacity: .92; }
   .qty-btn{ width: 40px; height: 40px; }
   .remove-all{ padding: 8px 10px; }
 }
+
 
 
 
