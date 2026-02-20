@@ -50,5 +50,19 @@
   <script src="menu.js"></script>
   <script src="script.js"></script>
 
+  <!-- Order confirmation modal -->
+<div id="orderOverlay" class="hidden"></div>
+
+<div id="orderModal" class="hidden">
+  <h2>Order Confirmed ✅</h2>
+  <div id="orderSummaryContent"></div>
+
+  <div class="order-actions">
+    <button id="sendWhatsAppBtn">Send to WhatsApp</button>
+    <button onclick="closeOrderModal()">Close</button>
+  </div>
+</div>
+
 </body>
 </html>
+
