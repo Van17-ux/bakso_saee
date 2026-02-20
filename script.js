@@ -230,6 +230,18 @@ function submitOrder() {
 
   showOrderModal(orderId, timestamp, summary, total);
 
+  const existing = JSON.parse(localStorage.getItem("orders") || "[]");
+
+existing.push({
+  orderId,
+  table: tableCode,
+  timestamp,
+  summary,
+  total
+});
+
+localStorage.setItem("orders", JSON.stringify(existing));
+
   // reset
   cart.length = 0;
   updateCart();
@@ -336,4 +348,5 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
+
 
