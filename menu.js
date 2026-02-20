@@ -8,7 +8,7 @@ const menuData = [
   available: true,
   badge: "Best Seller"
 }
-  { id: 0, name: "Komplit", price: 25000, category: "Combo", image: "./", desc: "" },
+  { id: 0, name: "Komplit", price: 25000, category: "Combo", image: "./", desc: "", allowNotes: true, available: true, badge: "Best Seller" },
   { id: 1, name: "Pedas", price: 22000, category: "Combo", image: "./", desc: "" },
   { id: 2, name: "Campur", price: 15000, category: "Combo", image: "./", desc: "1 Bakso Alus, 1 Bakso Urat, 1 Bakso Jumbo Urat" },
   { id: 3, name: "Jumbo", price: 20000, category: "Combo", image: "./", desc: "" },
