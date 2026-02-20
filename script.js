@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("sendWhatsAppBtn")?.addEventListener("click", () => {
   if(!window.lastOrderData) return;
 
-  const phone = "08990866716"; // change to your restaurant number
+  const phone = "+628990866716"; // change to your restaurant number
 
   const message =
 `New Order
@@ -348,6 +348,7 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
+
 
 
 
