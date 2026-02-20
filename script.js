@@ -225,18 +225,41 @@ function submitOrder() {
     return `- ${g.name} x${qty}${notesBlock}`;
   }).join("\n\n");
 
-  // show alert
-  alert(
-    `✅ Order placed!\n` +
-    `Table: ${tableCode}\n\n` +
-    `${summary}\n\n` +
-    `Total: Rp. ${typeof safeMoney === "function" ? safeMoney(total) : total.toFixed(0)}`
-  );
+  const orderId = "ORD-" + Date.now();
+  const timestamp = new Date().toLocaleString("id-ID");
+
+  showOrderModal(orderId, timestamp, summary, total);
 
   // reset
   cart.length = 0;
   updateCart();
   toggleCart();
+}
+
+function showOrderModal(orderId, timestamp, summary, total){
+  const overlay = document.getElementById("orderOverlay");
+  const modal = document.getElementById("orderModal");
+  const content = document.getElementById("orderSummaryContent");
+
+  content.innerHTML = `
+    <p><strong>Order ID:</strong> ${orderId}</p>
+    <p><strong>Table:</strong> ${tableCode}</p>
+    <p><strong>Time:</strong> ${timestamp}</p>
+    <hr/>
+    <pre>${summary}</pre>
+    <hr/>
+    <p><strong>Total:</strong> Rp. ${safeMoney(total)}</p>
+  `;
+
+  overlay.classList.remove("hidden");
+  modal.classList.remove("hidden");
+
+  window.lastOrderData = { orderId, timestamp, summary, total };
+}
+
+function closeOrderModal(){
+  document.getElementById("orderOverlay")?.classList.add("hidden");
+  document.getElementById("orderModal")?.classList.add("hidden");
 }
 
 function toggleCart() {
@@ -294,5 +317,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("cartModal");
     if (modal && !modal.classList.contains("hidden")) toggleCart();
   });
+});
+
+document.getElementById("sendWhatsAppBtn")?.addEventListener("click", () => {
+  if(!window.lastOrderData) return;
+
+  const phone = "6281234567890"; // change to your restaurant number
+
+  const message =
+`New Order
+Order ID: ${window.lastOrderData.orderId}
+Table: ${tableCode}
+
+${window.lastOrderData.summary}
+
+Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
 });
 
