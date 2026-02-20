@@ -347,6 +347,27 @@ button:hover { opacity: .92; }
   .remove-all{ padding: 8px 10px; }
 }
 
+#orderOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 13000;
+}
+
+#orderModal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(560px, calc(100vw - 24px));
+  background: white;
+  border-radius: 22px;
+  padding: 18px;
+  z-index: 13001;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
 
 
 
