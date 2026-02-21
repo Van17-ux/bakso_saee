@@ -385,6 +385,12 @@ button:hover { opacity: .92; }
   z-index: 2;
 }
 
+.sold-out {
+  background: #ddd;
+  color: #777;
+  cursor: not-allowed;
+}
+
 
 
 
