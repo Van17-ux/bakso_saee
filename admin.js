@@ -13,13 +13,13 @@ orders.forEach(order => {
     <p><strong>${order.orderId}</strong></p>
     <p>Table: ${order.table}</p>
     <pre>${order.summary}</pre>
-    <p>Total: Rp. ${order.total}</p>
+    <p>Total: Rp. ${Number(order.total).toLocaleString("id-ID")}</p>
   `;
   container.appendChild(div);
 });
 
 const totalDiv = document.createElement("h2");
-totalDiv.innerText = "Total Sales: Rp. " + totalSales;
+totalDiv.innerText = "Total Sales: Rp. " + totalSales.toLocaleString("id-ID");
 container.appendChild(totalDiv);
 
 function clearOrders(){
