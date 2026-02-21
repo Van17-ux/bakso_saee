@@ -52,7 +52,6 @@ function renderMenu() {
         card.className = "menu-item";
 
         card.innerHTML = `
-          card.innerHTML = `
   <div class="menu-left">
 
     <div class="menu-img-wrapper">
@@ -358,6 +357,7 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
+
 
 
 
