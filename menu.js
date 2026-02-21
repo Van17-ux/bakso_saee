@@ -1,6 +1,6 @@
 const menuData = [
-  { id: 0, name: "Komplit", price: 25000, category: "Combo", image: "./", desc: "", available: true, badge: "" },
-  { id: 1, name: "Pedas", price: 22000, category: "Combo", image: "./", desc: "", available: true, badge: "" },
+  { id: 0, name: "Komplit", price: 25000, category: "Combo", image: "./", desc: "", available: true, badge: "Best Seller" },
+  { id: 1, name: "Pedas", price: 22000, category: "Combo", image: "./", desc: "", available: false, badge: "" },
   { id: 2, name: "Campur", price: 15000, category: "Combo", image: "./", desc: "1 Bakso Alus, 1 Bakso Urat, 1 Bakso Jumbo Urat" },
   { id: 3, name: "Jumbo", price: 20000, category: "Combo", image: "./", desc: "", available: true, badge: "" },
   { id: 4, name: "Serbu", price: 8000, category: "Combo", image: "./", desc: "", available: true, badge: "" },
@@ -25,6 +25,7 @@ const menuData = [
   { id: 23, name: "Es/Panas Teh Manis", price: 4000, category: "Minuman", image: "./assets/minuman/teh_tawar_manis.jpg", desc: "", available: true, badge: "" },
   { id: 24, name: "Es/Panas Teh Tawar", price: 3000, category: "Minuman", image: "./assets/minuman/teh_tawar_manis.jpg", desc: "", available: true, badge: "" },
 ];
+
 
 
 
