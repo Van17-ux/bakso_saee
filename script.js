@@ -330,11 +330,11 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMenu();
   updateCart();
 
-  // close product modal by tapping overlay or X
+  // Close product modal
   document.getElementById("productOverlay")?.addEventListener("click", closeProductModal);
   document.getElementById("productCloseBtn")?.addEventListener("click", closeProductModal);
 
-  // close cart by tapping overlay
+  // Close cart when clicking overlay
   document.getElementById("overlay")?.addEventListener("click", () => {
     const modal = document.getElementById("cartModal");
     if (modal && !modal.classList.contains("hidden")) {
@@ -362,6 +362,7 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   });
 
 });
+
 
 
 
