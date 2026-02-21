@@ -52,24 +52,34 @@ function renderMenu() {
         card.className = "menu-item";
 
         card.innerHTML = `
-          <div class="menu-left">
-          <div class="menu-img-wrapper">
-          ${item.badge ? `<div class="menu-badge">${item.badge}</div>` : ""}
-          ${item.available === false ? `<div class="sold-overlay">Sold Out</div>` : ""}
-          <img
-            class="menu-img"
-            src="${item.image || ""}"
-            alt="${item.name}"
-            onclick="openProductModal(${item.id})"
-          />
-        </div>
-        
-        ${item.available === false
-          ? `<button class="menu-add sold-out" disabled>Sold Out</button>`
-          : `<button class="menu-add" onclick="addToCart(${item.id})">Add</button>`
-        }
+          card.innerHTML = `
+  <div class="menu-left">
 
-        menuEl.appendChild(card);
+    <div class="menu-img-wrapper">
+      ${item.badge ? `<div class="menu-badge">${item.badge}</div>` : ""}
+      ${item.available === false ? `<div class="sold-overlay">Sold Out</div>` : ""}
+      <img
+        class="menu-img"
+        src="${item.image || ""}"
+        alt="${item.name}"
+        onclick="openProductModal(${item.id})"
+      />
+    </div>
+
+    <div class="menu-text">
+      <div class="menu-name">${item.name}</div>
+      <div class="menu-desc">${item.desc || ""}</div>
+      <div class="menu-price">Rp. ${safeMoney(item.price)}</div>
+    </div>
+
+  </div>
+
+  ${
+    item.available === false
+      ? `<button class="menu-add sold-out" disabled>Sold Out</button>`
+      : `<button class="menu-add" onclick="addToCart(${item.id})">Add</button>`
+  }
+`;
       });
   });
 }
@@ -348,6 +358,7 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
+
 
 
 
