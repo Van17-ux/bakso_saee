@@ -5,7 +5,7 @@ const container = document.getElementById("orders");
 let totalSales = 0;
 
 orders.forEach(order => {
-  totalSales += order.total;
+  totalSales += Number(order.total || 0);
 
   const div = document.createElement("div");
   div.innerHTML = `
