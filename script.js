@@ -69,7 +69,10 @@ function renderMenu() {
             </div>
           </div>
 
-          <button class="menu-add" onclick="addToCart(${item.id})">Add</button>
+          ${item.available === false 
+            ? `<button class="menu-add sold-out" disabled>Sold Out</button>`
+            : `<button class="menu-add" onclick="addToCart(${item.id})">Add</button>`
+          }
         `;
 
         menuEl.appendChild(card);
@@ -351,6 +354,7 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
+
 
 
 
