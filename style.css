@@ -372,7 +372,7 @@ button:hover { opacity: .92; }
   position: relative;
   width: 74px;
   height: 74px;
-  flex-shrink: 0;
+  
 }
 
 .menu-badge {
@@ -399,6 +399,7 @@ button:hover { opacity: .92; }
 .sold-overlay {
   background: red;
 }
+
 
 
 
