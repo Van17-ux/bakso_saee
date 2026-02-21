@@ -71,12 +71,8 @@ header {
   opacity: .9;
 }
 
-.menu-add {
-  padding: 10px 16px;
-  border-radius: 14px;
-  border: 0;
-  background: #efefef;
-  cursor: pointer;
+.menu-add:hover {
+  transform: translateY(-2px);
 }
 
 button:hover { opacity: .92; }
@@ -399,6 +395,7 @@ button:hover { opacity: .92; }
   border-radius: 16px;
   pointer-events: none;
 }
+
 
 
 
