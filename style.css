@@ -370,8 +370,9 @@ button:hover { opacity: .92; }
 
 .menu-img-wrapper {
   position: relative;
-  width: 74px;     /* same as image width */
-  height: 74px;    /* same as image height */
+  width: 74px;
+  height: 74px;
+  flex-shrink: 0;
 }
 
 .menu-badge {
@@ -409,6 +410,7 @@ button:hover { opacity: .92; }
   border-radius: 16px;
   pointer-events: none;
 }
+
 
 
 
