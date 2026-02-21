@@ -391,7 +391,17 @@ button:hover { opacity: .92; }
   cursor: not-allowed;
 }
 
-
+.sold-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 16px;
+}
 
 
 
