@@ -53,12 +53,15 @@ function renderMenu() {
 
         card.innerHTML = `
           <div class="menu-left">
+          <div class="menu-img-wrapper">
+            ${item.badge ? `<div class="menu-badge">${item.badge}</div>` : ""}
             <img
               class="menu-img"
               src="${item.image || ""}"
               alt="${item.name}"
               onclick="openProductModal(${item.id})"
             />
+          </div>
             <div class="menu-text">
               <div class="menu-name">${item.name}</div>
               <div class="menu-desc">${item.desc || ""}</div>
@@ -348,6 +351,7 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
+
 
 
 
