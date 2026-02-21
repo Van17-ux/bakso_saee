@@ -337,14 +337,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // close cart by tapping overlay
   document.getElementById("overlay")?.addEventListener("click", () => {
     const modal = document.getElementById("cartModal");
-    if (modal && !modal.classList.contains("hidden")) toggleCart();
+    if (modal && !modal.classList.contains("hidden")) {
+      toggleCart();
+    }
+  });
 
+  // WhatsApp button
   document.getElementById("sendWhatsAppBtn")?.addEventListener("click", () => {
-  if(!window.lastOrderData) return;
+    if (!window.lastOrderData) return;
 
-  const phone = "+628990866716"; // change to your restaurant number
+    const phone = "628990866716";
 
-  const message =
+    const message =
 `New Order
 Order ID: ${window.lastOrderData.orderId}
 Table: ${tableCode}
@@ -353,9 +357,10 @@ ${window.lastOrderData.summary}
 
 Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
 
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank");
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
   });
+
 });
 
 
