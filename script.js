@@ -381,8 +381,8 @@ function showToast(message) {
     toast.classList.remove("show");
     setTimeout(() => toast.remove(), 300);
   }, 2000);
-  showToast("Order sent successfully ✔");
 }
+
 
 
 
