@@ -99,6 +99,7 @@ function addToCart(id) {
   });
 
   updateCart();
+  showToast(item.name + " added to cart ✔");
 }
 
 function updateCart() {
@@ -235,7 +236,12 @@ function submitOrder() {
     return `- ${g.name} x${qty}${notesBlock}`;
   }).join("\n\n");
 
-  const orderId = "ORD-" + Date.now();
+  let lastOrderNumber = Number(localStorage.getItem("lastOrderNumber") || 0);
+  lastOrderNumber += 1;
+  localStorage.setItem("lastOrderNumber", lastOrderNumber);
+  
+  const orderId = "ORD-" + String(lastOrderNumber).padStart(12, "0");
+  
   const timestamp = new Date().toLocaleString("id-ID");
 
   showOrderModal(orderId, timestamp, summary, total);
@@ -363,6 +369,20 @@ Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
 
 });
 
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 50);
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 2000);
+  showToast("Order sent successfully ✔");
+}
 
 
 
