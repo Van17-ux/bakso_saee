@@ -364,7 +364,7 @@ ${window.lastOrderData.summary}
 Total: Rp. ${safeMoney(window.lastOrderData.total)}`;
 
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`)
   });
 
 });
@@ -382,6 +382,7 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 300);
   }, 2000);
 }
+
 
 
 
