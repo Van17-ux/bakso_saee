@@ -396,6 +396,26 @@ button:hover { opacity: .92; }
   pointer-events: none;
 }
 
+.toast {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: #2ecc71;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .3s ease;
+  z-index: 20000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 
